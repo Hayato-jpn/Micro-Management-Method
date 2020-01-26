@@ -12,7 +12,7 @@ class FoodController extends Controller
         return view('admin.food.create');
     }
     
-    public function create() {
+    public function create(Request $request) {
         return redirect('admin/food/create');
     }
     
