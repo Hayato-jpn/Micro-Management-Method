@@ -17,9 +17,9 @@ class CreateFoodTable extends Migration
             $table->bigIncrements('id');
             $table->date('eat_date');
             $table->string('food');
-            $table->integer('protein');
-            $table->integer('carbohydrate');
-            $table->integer('lipid');
+            $table->double('protein', 10, 1); //integerから変更
+            $table->double('carbohydrate', 10, 1); //integerから変更
+            $table->double('lipid', 10, 1); //integerから変更
             $table->timestamps();
         });
     }

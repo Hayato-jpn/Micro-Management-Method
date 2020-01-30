@@ -37,4 +37,16 @@ class FoodController extends Controller
     public function update() {
         return redirect('admin/food/edit');
     }
+    
+    public function index(Request $request) {
+        $cond_title = $request->cond_title;
+        if ($cond_title != '') {
+          // 検索されたら検索結果を取得する
+          $posts = Food::where('food', $cond_title)->get();
+      } else {
+          // それ以外はすべてのニュースを取得する
+          $posts = Food::all();
+      }
+      return view('admin.food.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }
 }
