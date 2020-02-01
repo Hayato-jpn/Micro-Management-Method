@@ -32,19 +32,19 @@
                     <div class="form-group row">
                         <label class="col-md-2">身長</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="height" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="height" value="{{ old('height') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">体重</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="weight" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="weight" value="{{ old('weight') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">年齢</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="age" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="age" value="{{ old('age') }}">
                         </div>
                     </div>
                     <div class="form-group row">

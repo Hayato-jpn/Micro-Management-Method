@@ -19,12 +19,14 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('food/create', 'Admin\FoodController@add')->middleware('auth');
     Route::post('food/create', 'Admin\FoodController@create');
     Route::get('food/edit', 'Admin\FoodController@edit')->middleware('auth');
-    Route::post('food/edit', 'Admin\FoodController@update');
+    Route::post('food/edit', 'Admin\FoodController@update')->middleware('auth');
+    Route::get('food/delete', 'Admin\FoodController@delete')->middleware('auth');
+    Route::get('food', 'Admin\FoodController@index')->middleware('auth');
     Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
     Route::post('profile/create', 'Admin\ProfileController@create');
     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
-    Route::post('profile/edit', 'Admin\ProfileController@update');
-    Route::get('food', 'Admin\FoodController@index')->middleware('auth');
+    Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
+    Route::get('profile/your-body', 'Admin\ProfileController@body')->middleware('auth');
 });
 Auth::routes();
 

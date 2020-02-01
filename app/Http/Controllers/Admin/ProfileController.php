@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use Illuminate\Support\Facades\Auth; //追加
 
 class ProfileController extends Controller
 {
@@ -34,8 +35,27 @@ class ProfileController extends Controller
         return view('admin.profile.edit');
     }
     
-    public function update() {
+    public function update(Request $request) {
+        // Validationをかける
+        $this->validate($request, Profile::$rules);
+        // News Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $profile_form = $request->all();
+        unset($profile_form['_token']);
+
+        // 該当するデータを上書きして保存する
+        $profile->fill($profile_form)->save();
         return redirect('admin/profile/edit');
+    }
+    
+    public function body(Request $request) {
+        //ログインユーザーID取得、基礎代謝計算に必要な項目取得
+        $user = Auth::user();
+        $user_id = Auth::id();
+        $profile = Profile::where('id', $user_id)->select('height', 'weight', 'age', 'sex')->first();
+        
+        return view('admin.profile.your-body',  ['profile' => $profile]);
     }
     
 }

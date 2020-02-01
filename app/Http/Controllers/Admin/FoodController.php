@@ -30,12 +30,34 @@ class FoodController extends Controller
         return redirect('admin/food/create');
     }
     
-    public function edit() {
-        return view('admin.food.edit');
+    public function edit(Request $request) {
+        $food = Food::find($request->id);
+        if (empty($food)) {
+            abort(404);
+        }
+        return view('admin.food.edit', ['food_form' => $food]);
     }
     
-    public function update() {
-        return redirect('admin/food/edit');
+    public function update(Request $request) {
+        // Validationをかける
+        $this->validate($request, Food::$rules);
+        // News Modelからデータを取得する
+        $food = Food::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $food_form = $request->all();
+        unset($food_form['_token']);
+
+        // 該当するデータを上書きして保存する
+        $food->fill($food_form)->save();
+        return redirect('admin/food/');
+    }
+    
+    public function delete(Request $request) {
+        // 該当するNews Modelを取得
+        $food = Food::find($request->id);
+        // 削除する
+        $food->delete();
+        return redirect('admin/food/');
     }
     
     public function index(Request $request) {

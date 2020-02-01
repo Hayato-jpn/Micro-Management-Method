@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <form action="{{ action('Admin\FoodController@index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
+                        <label class="col-md-2">Food名</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
                         </div>
@@ -32,20 +32,36 @@
                         <thead>
                             <tr>
                                 <th width="10%">ID</th>
-                                <th width="20%">食品名</th>
-                                <th width="20%">タンパク質(g)</th>
-                                <th width="20%">炭水化物(g)</th>
-                                <th width="20%">脂質質(g)</th>
+                                <th width="10%">日付</th>
+                                <th width="10%">朝昼晩</th>
+                                <th width="12%">食品名</th>
+                                <th width="12%">タンパク質(g)</th>
+                                <th width="12%">炭水化物(g)</th>
+                                <th width="12%">脂質(g)</th>
+                                <th width="10%">編集</th></th>
+                                <th width="10%">削除</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($posts as $food)
                                 <tr>
                                     <th>{{ $food->id }}</th>
+                                    <td>{{ \Str::limit($food->eat_date, 100) }}</td>
+                                    <td>{{ \Str::limit($food->eat_time, 100) }}</td>
                                     <td>{{ \Str::limit($food->food, 100) }}</td>
                                     <td>{{ \Str::limit($food->protein, 100) }}</td>
                                     <td>{{ \Str::limit($food->carbohydrate, 100) }}</td>
                                     <td>{{ \Str::limit($food->lipid, 100) }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\FoodController@edit', ['id' => $food->id]) }}">編集</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\FoodController@delete', ['id' => $food->id]) }}">削除</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
