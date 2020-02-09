@@ -12,6 +12,7 @@ class Food extends Model
     
     public static $rules = array(
         'eat_date' => 'required',
+        'eat_time' => 'required| filled',
         'food' => 'required',
         'protein' => 'required',
         'carbohydrate' => 'required',

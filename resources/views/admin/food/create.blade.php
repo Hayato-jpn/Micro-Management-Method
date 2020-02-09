@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>摂取FOOD新規登録</h2>
-                <p>摂取した食品の下記栄養素を小数点第一位まで記入して下さい。</p>
+                <p>摂取した食品の下記栄養素を必要に応じて小数点第二位まで記入して下さい。<br/>尚、料理などパッケージに栄養素が記載されていない場合は、<a href="https://calorie.slism.jp/" target="_blank" rel="noopener noreferrer">コチラ</a>を参照して下さい。</p>
                 <form action="{{ action('Admin\FoodController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
@@ -24,7 +24,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">朝・昼・夜</label>
+                        <label class="col-md-2">食品名</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="food" value="{{ old('food') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">種類</label>
                         <div class="col-md-10">
                             <select class="form-control" name="eat_time">
                                 <option value="">タイミングを選択して下さい</option>
@@ -32,12 +38,6 @@
                                 <option value="昼食">昼食</option>
                                 <option value="晩飯">晩飯</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2">食品名</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="food" value="{{ old('food') }}">
                         </div>
                     </div>
                     <div class="form-group row">

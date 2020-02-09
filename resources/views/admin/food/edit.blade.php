@@ -24,7 +24,18 @@
                     <div class="form-group row">
                         <label class="col-md-2">食品名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="food" value="{{ old('food') }}">
+                            <input type="text" class="form-control" name="food" value="{{ $food_form->food }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">種類</label>
+                        <div class="col-md-10">
+                            <select class="form-control" name="eat_time">
+                                <option value="">タイミングを選択して下さい</option>
+                                <option value="朝食">朝食</option>
+                                <option value="昼食">昼食</option>
+                                <option value="晩飯">晩飯</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

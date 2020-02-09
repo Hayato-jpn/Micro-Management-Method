@@ -31,7 +31,7 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
+                                <th width="10%">Number</th>
                                 <th width="10%">日付</th>
                                 <th width="10%">朝昼晩</th>
                                 <th width="12%">食品名</th>
@@ -43,9 +43,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $count = 1 ?>
                             @foreach($posts as $food)
                                 <tr>
-                                    <th>{{ $food->id }}</th>
+                                    <th>{{ $count }}</th>
                                     <td>{{ \Str::limit($food->eat_date, 100) }}</td>
                                     <td>{{ \Str::limit($food->eat_time, 100) }}</td>
                                     <td>{{ \Str::limit($food->food, 100) }}</td>
@@ -63,6 +64,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <?php $count++ ?>
                             @endforeach
                         </tbody>
                     </table>

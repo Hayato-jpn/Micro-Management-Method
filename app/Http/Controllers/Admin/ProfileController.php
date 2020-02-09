@@ -31,29 +31,34 @@ class ProfileController extends Controller
         return redirect('admin/profile/create');
     }
     
-    public function edit() {
-        return view('admin.profile.edit');
+    public function edit(Request $request) {
+        $profile = Profile::find($request->id);
+        if (empty($profile)) {
+            abort(404);    
+        }
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
     
     public function update(Request $request) {
         // Validationをかける
-        $this->validate($request, Profile::$rules);
-        // News Modelからデータを取得する
-        $profile = Profile::find($request->id);
-        // 送信されてきたフォームデータを格納する
-        $profile_form = $request->all();
-        unset($profile_form['_token']);
-
-        // 該当するデータを上書きして保存する
-        $profile->fill($profile_form)->save();
-        return redirect('admin/profile/edit');
+          $this->validate($request, Profile::$rules);
+          // News Modelからデータを取得する
+          $profile = Profile::find($request->id);
+          // 送信されてきたフォームデータを格納する
+          $profile_form = $request->all();
+          unset($profile_form['_token']);
+    
+          // 該当するデータを上書きして保存する
+          $profile->fill($profile_form)->save();
+    
+          return redirect('admin/profile/your-body');
     }
     
     public function body(Request $request) {
         //ログインユーザーID取得、基礎代謝計算に必要な項目取得
         $user = Auth::user();
         $user_id = Auth::id();
-        $profile = Profile::where('id', $user_id)->select('height', 'weight', 'age', 'sex')->first();
+        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
         
         return view('admin.profile.your-body',  ['profile' => $profile]);
     }

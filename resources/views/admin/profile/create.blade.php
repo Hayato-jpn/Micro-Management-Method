@@ -64,7 +64,7 @@
                         <div class="col-md-10">
                             <select class="form-control" name="purpose">
                                 <option value="">目的を選択して下さい</option>
-                                <option value="diet">減量</option>
+                                <option value="diet">減量(ダイエット)</option>
                                 <option value="keep">現状維持</option>
                                 <option value="increase">増量</option>
                             <!--<input type="text" class="form-control" name="purpose" value="{{ old('title') }}">-->
