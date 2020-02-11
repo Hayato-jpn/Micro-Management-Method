@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', '摂取FOOD新規登録')
+@section('title', '食事新規登録')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>摂取FOOD新規登録</h2>
-                <p>摂取した食品の下記栄養素を必要に応じて小数点第二位まで記入して下さい。<br/>尚、料理などパッケージに栄養素が記載されていない場合は、<a href="https://calorie.slism.jp/" target="_blank" rel="noopener noreferrer">コチラ</a>を参照して下さい。</p>
+                <h2>食事新規登録</h2>
+                <p>摂取した食品の栄養素を記入して下さい。<br/>尚、料理などパッケージに栄養素が記載されていない場合は、<a href="https://calorie.slism.jp/" target="_blank" rel="noopener noreferrer">コチラ</a>を参照して下さい。</p>
                 <form action="{{ action('Admin\FoodController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)

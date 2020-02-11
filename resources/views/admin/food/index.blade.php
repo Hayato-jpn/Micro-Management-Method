@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', '登録済みFoodの一覧')
+@section('title', '登録済み食事一覧')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>Food一覧</h2>
+            <h2>登録済み食事一覧</h2>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <form action="{{ action('Admin\FoodController@index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">Food名</label>
+                        <label class="col-md-2">食事名</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
                         </div>
@@ -31,7 +31,7 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">Number</th>
+                                <th width="10%">ID</th></th>
                                 <th width="10%">日付</th>
                                 <th width="10%">朝昼晩</th>
                                 <th width="12%">食品名</th>

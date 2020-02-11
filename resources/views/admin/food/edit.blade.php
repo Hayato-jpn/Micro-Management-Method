@@ -1,11 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'Foodの編集')
+@section('title', '食事編集')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>Food編集</h2>
+                <h2>食事編集</h2>
+                <p>情報記入後、下部にある "更新" ボタンを押して下さい。</p>
                 <form action="{{ action('Admin\FoodController@update') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
