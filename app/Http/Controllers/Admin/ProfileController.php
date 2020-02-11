@@ -59,8 +59,17 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user_id = Auth::id();
         $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
-        
+    
         return view('admin.profile.your-body',  ['profile' => $profile]);
+    }
+    
+    public function today() {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        $output = $profile->bmr;
+        
+        return view('admin.profile.today', compact('output'));
     }
     
 }

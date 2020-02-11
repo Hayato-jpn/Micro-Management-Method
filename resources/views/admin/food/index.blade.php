@@ -43,10 +43,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $count = 1 ?>
-                            @foreach($posts as $food)
+                            @foreach($posts as $i => $food)
                                 <tr>
-                                    <th>{{ $count }}</th>
+                                    <th>{{ $i + 1 }}</th>
                                     <td>{{ \Str::limit($food->eat_date, 100) }}</td>
                                     <td>{{ \Str::limit($food->eat_time, 100) }}</td>
                                     <td>{{ \Str::limit($food->food, 100) }}</td>
@@ -64,7 +63,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <?php $count++ ?>
                             @endforeach
                         </tbody>
                     </table>

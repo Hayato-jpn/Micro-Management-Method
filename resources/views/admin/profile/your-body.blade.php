@@ -10,51 +10,22 @@
             <div class="col-md-8 mx-auto">
                 <p>デイリー総摂取カロリー / 小数点以下は切り捨て表記</p>
                 <!-- ここに計算結果を入れる -->
-                @if ($profile->sex == 'man')
-                    <?php $output = floor(10 * $profile->weight + 6.25 * $profile->height - 5 * $profile->age + 5); ?>
-                @else
-                    <?php $output = floor(10 * $profile->weight + 6.25 * $profile->height - 5 * $profile->age - 161); ?>
-                @endif
-                
-                @if ($profile->active == 'low')
-                    <?php $totalCalory = $output * 1.2; ?>
-                @elseif ($profile->active == 'normal')
-                    <?php $totalCalory = $output * 1.55; ?>
-                @else
-                    <?php $totalCalory = $output * 1.725; ?>
-                @endif
-                
-                @if ($profile->purpose == 'diet')
-                    <?php $totalCalory = $totalCalory * 0.8; ?>
-                @elseif ($profile->purpose == 'keep')
-                    <?php $totalCalory = $totalCalory * 1; ?>
-                @else
-                    <?php $totalCalory = $totalCalory * 1.2; ?>
-                @endif
-                <h3><?php echo floor($totalCalory); ?></h3>
+                <h3>{{ $profile->total_calorie }}</h3>
                 <p>kcal</p>
             </div>
             <div class="col-md-8 mx-auto">
                 <p>内訳はコチラ↓</p>
-                <!--<?php $protein = $profile->weight * 2; ?>  タンパク質計算式-->
-                <!--<?php $lipid = floor($totalCalory * 0.25 / 9);?>  脂質計算式-->
-                <!--<?php $carbohydrate = floor(($totalCalory - $protein * 4 - $lipid * 9) / 4);?>   炭水化物計算式-->
                 <p>タンパク質(g)</p>
-                <p><?php echo $protein; ?> g</p>
+                <p>{{ $profile->protein }} g</p>
                 <p>炭水化物(g)</p>
-                <p><?php echo $carbohydrate; ?> g</p>
+                <p>{{ $profile->carbohydrate }} g</p>
                 <p>脂質(g)</p>
-                <p><?php echo $lipid; ?> g</p>
+                <p>{{ $profile->lipid }} g</p>
             </div>
             <div class="col-md-8 mx-auto">
                 <p>ちなみに、</p>
                 <!-- ここに計算結果を入れる -->
-                @if ($profile->sex == 'man')
-                    <?php $output = floor(10 * $profile->weight + 6.25 * $profile->height - 5 * $profile->age + 5); ?>
-                @else
-                    <?php $output = floor(10 * $profile->weight + 6.25 * $profile->height - 5 * $profile->age - 161); ?>
-                @endif
-                <h3><?php echo $output; ?></h3>
+                <h3>{{ $profile->bmr }}</h3>
                 <p>kcalがあなたの一日の基礎代謝です。</p>
             </div>
         </div>
