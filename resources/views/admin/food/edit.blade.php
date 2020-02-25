@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>食事編集</h2>
+                <p>摂取した食品の栄養素を記入して下さい。<br/>尚、料理などパッケージに栄養素が記載されていない場合は、<a href="https://calorie.slism.jp/" target="_blank" rel="noopener noreferrer">コチラ</a>を参照して下さい。</p>
                 <p>情報記入後、下部にある "更新" ボタンを押して下さい。</p>
                 <form action="{{ action('Admin\FoodController@update') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
@@ -35,7 +36,7 @@
                                 <option value="">タイミングを選択して下さい</option>
                                 <option value="朝食">朝食</option>
                                 <option value="昼食">昼食</option>
-                                <option value="晩飯">晩飯</option>
+                                <option value="夕食">夕食</option>
                             </select>
                         </div>
                     </div>

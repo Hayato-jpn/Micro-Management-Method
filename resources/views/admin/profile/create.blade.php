@@ -56,9 +56,9 @@
                         <div class="col-md-10">
                             <select class="form-control" name="active">
                                 <option value="">アクティブ度を選択して下さい</option>
-                                <option value="low">【アクティブ-低】座り仕事が多く、一日の運動は歩いたり階段を上ったりする程度</option>
-                                <option value="normal">【アクティブ度-普通】立ち仕事や重労働が多く、比較的一日中動き回っている</option>
-                                <option value="high">【アクティブ度-高】立ち仕事や重労働が多く、それに加えジムでトレーニングを行っている</option>
+                                <option value="low">【低】座り仕事が多く、一日の運動は歩いたり階段を上ったりする程度</option>
+                                <option value="normal">【普通】立ち仕事や重労働が多く、比較的一日中動き回っている</option>
+                                <option value="high">【高】立ち仕事や重労働が多く、それに加えジムでトレーニングを行っている</option>
                             <!--<input type="text" class="form-control" name="active" value="{{ old('title') }}">-->
                             </select>
                         </div>

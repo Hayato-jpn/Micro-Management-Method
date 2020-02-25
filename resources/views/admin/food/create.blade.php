@@ -36,7 +36,7 @@
                                 <option value="">タイミングを選択して下さい</option>
                                 <option value="朝食">朝食</option>
                                 <option value="昼食">昼食</option>
-                                <option value="晩飯">晩飯</option>
+                                <option value="夕食">夕食</option>
                             </select>
                         </div>
                     </div>

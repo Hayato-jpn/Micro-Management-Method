@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $profile->fill($form);
         $profile->save();
         
-        return redirect('admin/profile/create');
+        return redirect('admin/profile/data');
     }
     
     public function edit(Request $request) {
@@ -51,16 +51,16 @@ class ProfileController extends Controller
           // 該当するデータを上書きして保存する
           $profile->fill($profile_form)->save();
     
-          return redirect('admin/profile/your-body');
+          return redirect('admin/profile/data');
     }
     
-    public function body(Request $request) {
+    public function data(Request $request) {
         //ログインユーザーID取得、基礎代謝計算に必要な項目取得
         $user = Auth::user();
         $user_id = Auth::id();
         $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
     
-        return view('admin.profile.your-body',  ['profile' => $profile]);
+        return view('admin.profile.data',  ['profile' => $profile]);
     }
     
     public function today() {

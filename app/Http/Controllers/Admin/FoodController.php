@@ -27,7 +27,7 @@ class FoodController extends Controller
         $food->fill($form);
         $food->save();
         
-        return redirect('admin/food/create');
+        return redirect('admin/food');
     }
     
     public function edit(Request $request) {

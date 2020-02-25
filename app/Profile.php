@@ -19,12 +19,14 @@ class Profile extends Model
         'purpose' => 'required | filled',
     );
     
+    //基礎代謝率↓
     public function getBmrAttribute() {
-        $val = ($this->sex == 'man') ? 5 : -161;
-        $output = floor(10 * $this->weight + 6.25 * $this->height - 5 * $this->age + $val);
+        $sexValue = ($this->sex == 'man') ? 5 : -161;
+        $output = floor(10 * $this->weight + 6.25 * $this->height - 5 * $this->age + $sexValue);
         return $output;
     }
     
+    //アクティブ度合い↓
     public function getActiveValueAttribute() {
         switch ($this->active) {
         case 'low':
@@ -35,6 +37,8 @@ class Profile extends Model
             return 1.725;
         }
     }
+    
+    //目的↓
     public function getPurposeValueAttribute() {
         switch ($this->purpose) {
         case 'diet':
@@ -46,19 +50,53 @@ class Profile extends Model
         }
     }
     
+    //目標カロリー計算↓
     public function getTotalCalorieAttribute() {
         return floor($this->bmr * $this->active_value * $this->purpose_value);
     }
     
+    //目標プロテイン↓
     public function getProteinAttribute() {
         return $this->weight * 2;
     }
     
-     public function getLipidAttribute() {
+     //目標脂質↓
+    public function getLipidAttribute() {
         return floor($this->total_calorie * 0.25 / 9);
     }
     
-     public function getCarbohydrateAttribute() {
+    //目標炭水化物↓
+    public function getCarbohydrateAttribute() {
         return floor(($this->total_calorie - $this->protein * 4 - $this->lipid * 9) / 4);
+    }
+    
+    //性別↓
+    public function getPersonalSexAttribute() {
+        $output = ($this->sex == 'man') ? '男' : '女';
+        return $output;
+    }
+    
+    //アクティブ度合い↓
+    public function getPersonalActiveAttribute() {
+        if ($this->active == 'low') {
+            $output = '【低】座り仕事が多く、一日の運動は歩いたり階段を上ったりする程度';
+        } elseif ($this->active == 'normal') {
+            $output = '【普通】立ち仕事や重労働が多く、比較的一日中動き回っている';
+        } else {
+            $output = '【高】立ち仕事や重労働が多く、それに加えジムでトレーニングを行っている';
+        }
+        return $output;
+    }
+    
+    //目的↓
+    public function getPersonalPurposeAttribute() {
+        if ($this->purpose == 'diet') {
+            $output = '減量(ダイエット)';
+        } elseif ($this->purpose == 'keep') {
+            $output = '現状維持';
+        } else {
+            $output = '増量';
+        }
+        return $output;
     }
 }
