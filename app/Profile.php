@@ -60,7 +60,7 @@ class Profile extends Model
         return $this->weight * 2;
     }
     
-     //目標脂質↓
+    //目標脂質↓
     public function getLipidAttribute() {
         return floor($this->total_calorie * 0.25 / 9);
     }

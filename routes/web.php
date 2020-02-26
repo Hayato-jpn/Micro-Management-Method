@@ -22,13 +22,13 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('food/edit', 'Admin\FoodController@update')->middleware('auth');
     Route::get('food/delete', 'Admin\FoodController@delete')->middleware('auth');
     Route::get('food', 'Admin\FoodController@index')->middleware('auth');
+    Route::get('food/today', 'Admin\FoodController@today')->middleware('auth'); //作業中
     
     Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
     Route::post('profile/create', 'Admin\ProfileController@create');
     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
     Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/data', 'Admin\ProfileController@data')->middleware('auth');
-    Route::get('profile/today', 'Admin\ProfileController@today')->middleware('auth');
 });
 Auth::routes();
 

@@ -72,42 +72,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <!--<div class="form-group row">-->
-                <!--    <label class="col-md-2">性別</label>-->
-                <!--    <div class="col-md-10">-->
-                <!--        <p>{{ $profile->personal_sex }}</p>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <!--<div class="form-group row">-->
-                <!--    <label class="col-md-2">身長</label>-->
-                <!--    <div class="col-md-10">-->
-                <!--        <p>{{ $profile->height }} cm</p>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <!--<div class="form-group row">-->
-                <!--    <label class="col-md-2">体重</label>-->
-                <!--    <div class="col-md-10">-->
-                <!--        <p>{{ $profile->weight }} kg</p>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <!--<div class="form-group row">-->
-                <!--    <label class="col-md-2">年齢</label>-->
-                <!--    <div class="col-md-10">-->
-                <!--        <p>{{ $profile->age }} 歳</p>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <!--<div class="form-group row">-->
-                <!--    <label class="col-md-2">アクティブ度</label>-->
-                <!--    <div class="col-md-10">-->
-                <!--        <p>{{ $profile->personal_active }} </p>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <!--<div class="form-group row">-->
-                <!--    <label class="col-md-2">目的</label>-->
-                <!--    <div class="col-md-10">-->
-                <!--         <p>{{ $profile->personal_purpose }} </p>-->
-                <!--    </div>-->
-                <!--</div>-->
                 <p>※プロフィールを編集する場合は、<a href="{{ action('Admin\ProfileController@edit', ['id' => $profile->id]) }}">コチラ</a>をタップして下さい。</p>
             </div>
         </div>

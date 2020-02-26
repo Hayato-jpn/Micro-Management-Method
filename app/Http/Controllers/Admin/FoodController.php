@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Food;
+use App\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -70,5 +72,18 @@ class FoodController extends Controller
           $posts = Food::all();
       }
       return view('admin.food.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }
+    
+    //作業中
+    public function today(Request $request) {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        //Foodマイグレーションファイルから本日データを$foodに入れる
+        $today = \Carbon\Carbon::now()->format('Y-m-d');
+        // $foods = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->all();
+        $food = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->first(); //⇦firstで反映されるかテスト
+        
+        return view('admin.food.today',  ['profile' => $profile, 'food' => $food]);
     }
 }
