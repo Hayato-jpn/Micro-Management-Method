@@ -58,8 +58,10 @@ class ProfileController extends Controller
         //ログインユーザーID取得、基礎代謝計算に必要な項目取得
         $user = Auth::user();
         $user_id = Auth::id();
-        // これだと正常な挙動になる → $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
-        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->all(); //←これだとエラー表示になる
+        // ↓これだと正常な挙動になる
+        // $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->all();
+        //☝︎これだとエラー表示になる
     
         return view('admin.profile.data',  ['profile' => $profile]);
     }
