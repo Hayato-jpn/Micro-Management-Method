@@ -12,15 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(url('home'));
 });
 
 Route::group(['prefix' => 'admin'], function() {
+    Route::get('food/top', 'Admin\FoodController@top');
     Route::get('food/create', 'Admin\FoodController@add')->middleware('auth');
     Route::post('food/create', 'Admin\FoodController@create');
     Route::get('food/edit', 'Admin\FoodController@edit')->middleware('auth');
     Route::post('food/edit', 'Admin\FoodController@update')->middleware('auth');
     Route::get('food/delete', 'Admin\FoodController@delete')->middleware('auth');
+    Route::get('food/refresh', 'Admin\FoodController@refresh')->middleware('auth'); //追加 for todaypage
     Route::get('food', 'Admin\FoodController@index')->middleware('auth');
     Route::get('food/today', 'Admin\FoodController@today')->middleware('auth'); //作業中
     
@@ -32,4 +34,4 @@ Route::group(['prefix' => 'admin'], function() {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Admin\FoodController@top')->name('home');

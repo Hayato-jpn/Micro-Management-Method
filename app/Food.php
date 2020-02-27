@@ -11,6 +11,7 @@ class Food extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
+        'user_id' => 'required',
         'eat_date' => 'required',
         'eat_time' => 'required| filled',
         'food' => 'required',
@@ -19,7 +20,7 @@ class Food extends Model
         'lipid' => 'required',
     );
     
-    // //作業中
+    // //作業中。→today.blade.php内へ変更
     // //今日摂取タンパク質
     // public function getTodayTotalProteinAttribute() {
     //     return $this->protein;

@@ -1,4 +1,5 @@
-@extends('layouts.admin')
+<!--layouts.adminから変更-->
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -6,6 +7,7 @@
             <div class="col-md-8">
                 <div class="login-box card">
                     <div class="login-header card-header mx-auto">{{ __('Login') }}</div>
+                    <p class="add-comment">会員登録されていない方は、右上の「Register」よりご登録下さい。</p>
 
                     <div class="login-body card-body">
                         <form method="POST" action="{{ route('login') }}">

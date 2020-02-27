@@ -12,7 +12,10 @@ class FoodController extends Controller
 {
     //
     public function add() {
-        return view('admin.food.create');
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
+        return view('admin.food.create', ['user_id' => $user_id]);
     }
     
     public function create(Request $request) {
@@ -33,11 +36,14 @@ class FoodController extends Controller
     }
     
     public function edit(Request $request) {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
         $food = Food::find($request->id);
         if (empty($food)) {
             abort(404);
         }
-        return view('admin.food.edit', ['food_form' => $food]);
+        return view('admin.food.edit', ['food_form' => $food, 'user_id' => $user_id]);
     }
     
     public function update(Request $request) {
@@ -62,14 +68,26 @@ class FoodController extends Controller
         return redirect('admin/food/');
     }
     
+    public function refresh(Request $request) {
+        // 該当するNews Modelを取得
+        $food = Food::find($request->id);
+        // 削除する
+        $food->delete();
+        return redirect('admin/food/today');
+    }
+    
     public function index(Request $request) {
+        //ログインユーザーID取得、基礎代謝計算に必要な項目取得
+        $user = Auth::user();
+        $user_id = Auth::id();
         $cond_title = $request->cond_title;
+        //したい事(ログインユーザーが登録したFoodのみを表示させたい)
         if ($cond_title != '') {
           // 検索されたら検索結果を取得する
-          $posts = Food::where('food', 'like', "%{$cond_title}%")->get();
+          $posts = Food::where('user_id', $user_id)->where('food', 'like', "%{$cond_title}%")->get(); //where('id', $user_id)を追加
       } else {
-          // それ以外はすべてのニュースを取得する
-          $posts = Food::all();
+          // それ以外はすべての登録食事を取得する
+          $posts = Food::where('user_id', $user_id)->get(); //where('id', $user_id)を追加
       }
       return view('admin.food.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -78,12 +96,25 @@ class FoodController extends Controller
     public function today(Request $request) {
         $user = Auth::user();
         $user_id = Auth::id();
+        
         $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        
         //Foodマイグレーションファイルから本日データを$foodに入れる
         $today = \Carbon\Carbon::now()->format('Y-m-d');
         // $foods = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->all();
-        $food = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->first(); //⇦firstで反映されるかテスト
+        $posts = Food::where('user_id', $user_id)->where('eat_date', $today)->get();
+        $post = Food::where('user_id', $user_id)->where('eat_date', $today)->first();
         
-        return view('admin.food.today',  ['profile' => $profile, 'food' => $food]);
+        if (empty($post)) {
+            return redirect('admin/food/create');
+        } elseif (empty($profile)) {
+            return redirect('admin/profile/create');
+        } else {
+            return view('admin.food.today',  ['profile' => $profile, 'posts' => $posts]);
+        }
+    }
+    
+    public function top() {
+        return view('admin.food.top');
     }
 }

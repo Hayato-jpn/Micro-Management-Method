@@ -31,8 +31,9 @@
             {{-- 画面上部に表示するナビゲーションバーです。 --}}
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/admin/food/top') }}">
+                        <!--{{ config('app.name', 'Laravel') }}-->
+                        Macro-Management-Method / マクロ管理法
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -41,7 +42,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-
+                            <li><p>&nbsp;【&nbsp;</p></li>
+                            <li><a href="{{ url('/admin/profile/data') }}">PROFILE</a></li>
+                            <li><p>&nbsp;/&nbsp;</p></li>
+                            <li><a href="{{ url('/admin/food/today') }}">TODAY DATA</a></li>
+                            <li><p>&nbsp;/&nbsp;</p></li>
+                            <li><a href="{{ url('/admin/food/create') }}">FOOD RECORD</a></li>
+                            <li><p>&nbsp;/&nbsp;</p></li>
+                            <li><a href="{{ url('/admin/food') }}">FOOD LIST</a></li>
+                            <li><p>&nbsp;】&nbsp;</p></li>
                         </ul>
 
                         <!-- Right Side Of Navbar -->
