@@ -157,7 +157,10 @@ return [
         'weight' => '体重',
         'age' => '年齢',
         'active' => 'アクティブ度',
-        'purpose' => '目的'
+        'purpose' => '目的',
+        'name' => '名前',
+        'email' => 'E-mail',
+        'body' => '本文'
         ],
 
 ];

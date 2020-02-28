@@ -92,7 +92,6 @@ class FoodController extends Controller
       return view('admin.food.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
     
-    //作業中
     public function today(Request $request) {
         $user = Auth::user();
         $user_id = Auth::id();
@@ -116,5 +115,42 @@ class FoodController extends Controller
     
     public function top() {
         return view('admin.food.top');
+    }
+    
+    //作業中
+    public function history(Request $request) {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
+        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        
+        //Foodマイグレーションファイルから本日データを$foodに入れる
+        $today = \Carbon\Carbon::now()->format('Y-m-d');
+        // $foods = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->all();
+        $posts = Food::where('user_id', $user_id)->where('eat_date', $today)->get();
+        $post = Food::where('user_id', $user_id)->where('eat_date', $today)->first();
+        
+        if (empty($post)) {
+            return redirect('admin/food/create');
+        } elseif (empty($profile)) {
+            return redirect('admin/profile/create');
+        } else {
+            return view('admin.food.history',  ['profile' => $profile, 'posts' => $posts]);
+        }
+    }
+    
+    public function check(Request $request) {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
+        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        
+        //Foodマイグレーションファイルから本日データを$foodに入れる
+        $thatDay = $request->input('eat_date'); //ここを正しく希望する日程を入れられれば、後は勝手に変わるはず
+        // $foods = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->all();
+        $posts = Food::where('user_id', $user_id)->where('eat_date', $thatDay)->get();
+        $post = Food::where('user_id', $user_id)->where('eat_date', $thatDay)->first();
+        
+        return view('admin.food.history',  ['profile' => $profile, 'posts' => $posts, 'thatDay' => $thatDay]);
     }
 }

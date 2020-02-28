@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\Contact; //Contactモデル追加
 use Illuminate\Support\Facades\Auth; //追加
 
 class ProfileController extends Controller

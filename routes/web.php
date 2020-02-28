@@ -24,7 +24,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('food/delete', 'Admin\FoodController@delete')->middleware('auth');
     Route::get('food/refresh', 'Admin\FoodController@refresh')->middleware('auth'); //追加 for todaypage
     Route::get('food', 'Admin\FoodController@index')->middleware('auth');
-    Route::get('food/today', 'Admin\FoodController@today')->middleware('auth'); //作業中
+    Route::get('food/today', 'Admin\FoodController@today')->middleware('auth');
+    Route::get('food/history', 'Admin\FoodController@history')->middleware('auth'); //作業中
+    Route::post('food/history', 'Admin\FoodController@check');
     
     Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
     Route::post('profile/create', 'Admin\ProfileController@create');

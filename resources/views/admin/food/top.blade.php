@@ -5,8 +5,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>\ Welcome to Macro-Management-Method /</h2>
-                <p>まずは、コチラ(↓)をご覧下さい。このサイトの元となった「マクロ管理法とは何か」について説明しています。</p>
+                <h2 class="add-h2">\ Welcome to Macro-Management-Method /</h2>
+                <p class="add-p">まずは、コチラ(↓)をご覧下さい。このサイトの元となった「マクロ管理法とは何か」について説明しています。</p>
                 <iframe width="864" height="486" src="https://www.youtube.com/embed/1Y44qkuHJQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p>※このサイトは、動画作成者さんとは全く関係ありません。</p>
                 <br />
@@ -21,6 +21,7 @@
                 <p>③：後は、日々の食事を<a href="{{ url('/admin/food/create') }}">食事新規登録</a>から登録して下さい</p>
                 <p>④：登録完了後、登録データが<a href="{{ url('/admin/food/') }}">登録済み食事一覧</a>ページに表示されます</p>
                 <p>⑤：また、<a href="{{ url('/admin/food/today') }}">本日の進捗</a>にて、本日の目標カロリー・各栄養素の達成度をご確認頂けます</p>
+                <p>⑥：過去データを閲覧したい場合は<a href="{{ url('/admin/food/history') }}">過去データ閲覧</a>より、ご確認頂けます</p>
                 <p>※入力データを修正する場合は、プロフィールデータの場合は<a href="{{ url('/admin/profile/data') }}">コチラ</a>のページ下部をご確認下さい。<br />※食事データの場合は<a href="{{ url('/admin/food') }}">コチラ</a>の各編集ボタンをご活用下さい。</p>
                 <br />
                 <br />

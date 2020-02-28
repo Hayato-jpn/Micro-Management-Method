@@ -47,6 +47,8 @@
                             <li><p>&nbsp;/&nbsp;</p></li>
                             <li><a href="{{ url('/admin/food/today') }}">TODAY DATA</a></li>
                             <li><p>&nbsp;/&nbsp;</p></li>
+                            <li><a href="{{ url('/admin/food/history') }}">HISTORY</a></li>
+                            <li><p>&nbsp;/&nbsp;</p></li>
                             <li><a href="{{ url('/admin/food/create') }}">FOOD RECORD</a></li>
                             <li><p>&nbsp;/&nbsp;</p></li>
                             <li><a href="{{ url('/admin/food') }}">FOOD LIST</a></li>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '本日の進捗')
+@section('title', '過去データ閲覧')
 
 <?php 
     $todayProtein = 0;
@@ -10,6 +10,13 @@
         $todayProtein += $post->protein;
         $todayCarbohydrate += $post->carbohydrate;
         $todayLipid += $post->lipid;
+        $today = $post->eat_date;
+    }
+    
+    if (empty($today)) {
+        $today = "{$thatDay}のデータはありません。";
+    } else {
+        $today = "{$today}のデータ";
     }
     
     $todayCalorie = floor($todayProtein * 4 + $todayCarbohydrate * 4 + $todayLipid * 9);
@@ -20,7 +27,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>本日の進捗</h2>
+                <h2>過去データ閲覧</h2>
+                <p>過去データ閲覧希望の場合、下記より希望日時を選択して下さい。</p>
+                <form action="{{ action('Admin\FoodController@check') }}" method="post" enctype="multipart/form-data">
+                    <!--<input type="date" name="eat_date" value="{{ old('eat_date', \Carbon\Carbon::now()->format('Y-m-d')) }}">-->
+                    <input type="date" name="eat_date" value="{{ old('eat_date') }}">
+                    {{ csrf_field() }}
+                    <input type="submit" class="btn btn-primary" value="確認">
+                </form>
+                <br />
+                <br />
+                <h2>{{ $today }}</h2>
                 <div class="form-group row">
                     <label class="col-md-2">摂取カロリー</label>
                     <div class="col-md-10">
@@ -56,7 +73,8 @@
                         </table>
                     </div>
                 </div>
-                <p>本日食べたもの一覧</p>
+               
+                <p>食べたもの一覧</p>
                 <div class="row">
                     <div class="list-news col-md-12 mx-auto">
                         <div class="row">
@@ -99,6 +117,5 @@
                         </div>
                     </div>
                 </div>
-                <p>※食品を追加する場合は、<a href="{{ url('admin/food/create') }}">コチラ</a>から。</p>
           </div>
 @endsection
