@@ -147,7 +147,7 @@ return [
 
     'attributes' => [
         'eat_date' => '日付',
-        'eat_time' => '朝・昼・夜',
+        'eat_time' => '種類',
         'food' => '食品名',
         'protein' => 'タンパク質(g)',
         'carbohydrate' => '炭水化物(g)',

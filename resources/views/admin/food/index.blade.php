@@ -33,7 +33,7 @@
                             <tr>
                                 <th width="10%">ID</th></th>
                                 <th width="10%">日付</th>
-                                <th width="10%">朝昼晩</th>
+                                <th width="10%">種類</th>
                                 <th width="12%">食品名</th>
                                 <th width="12%">タンパク質(g)</th>
                                 <th width="12%">炭水化物(g)</th>

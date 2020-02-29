@@ -14,7 +14,7 @@
     }
     
     if (empty($today)) {
-        $today = "{$thatDay}のデータはありません。";
+        $today = "該当データがありません。";
     } else {
         $today = "{$today}のデータ";
     }

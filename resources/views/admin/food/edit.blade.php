@@ -21,7 +21,7 @@
                         <label class="col-md-2">日付</label>
                         <div class="col-md-10">
                             <!--<input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">-->
-                            <input type="date" class="form-control" name="eat_date" value="{{ old('eat_date', \Carbon\Carbon::now()->format('Y-m-d')) }}">
+                            <input type="date" class="form-control" name="eat_date" value="{{ $food_form->eat_date, \Carbon\Carbon::now()->format('Y-m-d') }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -44,19 +44,19 @@
                     <div class="form-group row">
                         <label class="col-md-2">タンパク質(g)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="protein" value="{{ old('protein') }}">
+                            <input type="text" class="form-control" name="protein" value="{{ $food_form->protein }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">炭水化物(g)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="carbohydrate" value="{{ old('carbohydrate') }}">
+                            <input type="text" class="form-control" name="carbohydrate" value="{{ $food_form->carbohydrate }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">脂質(g)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="lipid" value="{{ old('lipid') }}">
+                            <input type="text" class="form-control" name="lipid" value="{{ $food_form->lipid }}">
                         </div>
                     </div>
                     <div class="form-group row">

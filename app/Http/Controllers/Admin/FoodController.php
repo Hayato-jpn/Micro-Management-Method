@@ -84,10 +84,10 @@ class FoodController extends Controller
         //したい事(ログインユーザーが登録したFoodのみを表示させたい)
         if ($cond_title != '') {
           // 検索されたら検索結果を取得する
-          $posts = Food::where('user_id', $user_id)->where('food', 'like', "%{$cond_title}%")->get(); //where('id', $user_id)を追加
+          $posts = Food::where('user_id', $user_id)->where('food', 'like', "%{$cond_title}%")->orderBy('eat_date','desc')->get(); //where('id', $user_id)を追加
       } else {
           // それ以外はすべての登録食事を取得する
-          $posts = Food::where('user_id', $user_id)->get(); //where('id', $user_id)を追加
+          $posts = Food::where('user_id', $user_id)->orderBy('eat_date','desc')->get(); //where('id', $user_id)を追加
       }
       return view('admin.food.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -104,9 +104,7 @@ class FoodController extends Controller
         $posts = Food::where('user_id', $user_id)->where('eat_date', $today)->get();
         $post = Food::where('user_id', $user_id)->where('eat_date', $today)->first();
         
-        if (empty($post)) {
-            return redirect('admin/food/create');
-        } elseif (empty($profile)) {
+        if (empty($profile)) {
             return redirect('admin/profile/create');
         } else {
             return view('admin.food.today',  ['profile' => $profile, 'posts' => $posts]);
@@ -130,13 +128,7 @@ class FoodController extends Controller
         $posts = Food::where('user_id', $user_id)->where('eat_date', $today)->get();
         $post = Food::where('user_id', $user_id)->where('eat_date', $today)->first();
         
-        if (empty($post)) {
-            return redirect('admin/food/create');
-        } elseif (empty($profile)) {
-            return redirect('admin/profile/create');
-        } else {
-            return view('admin.food.history',  ['profile' => $profile, 'posts' => $posts]);
-        }
+        return view('admin.food.history',  ['profile' => $profile, 'posts' => $posts]);
     }
     
     public function check(Request $request) {
