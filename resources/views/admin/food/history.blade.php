@@ -30,7 +30,6 @@
                 <h2>過去データ閲覧</h2>
                 <p>過去データ閲覧希望の場合、下記より希望日時を選択して下さい。</p>
                 <form action="{{ action('Admin\FoodController@check') }}" method="post" enctype="multipart/form-data">
-                    <!--<input type="date" name="eat_date" value="{{ old('eat_date', \Carbon\Carbon::now()->format('Y-m-d')) }}">-->
                     <input type="date" name="eat_date" value="{{ old('eat_date') }}">
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="確認">

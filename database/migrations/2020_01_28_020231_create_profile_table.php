@@ -15,6 +15,7 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id'); //追加
             $table->string('sex');
             $table->double('height', 10, 1); //integerから変更
             $table->double('weight', 10, 1); //integerから変更

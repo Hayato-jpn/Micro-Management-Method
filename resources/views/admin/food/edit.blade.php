@@ -7,8 +7,9 @@
             <div class="col-md-8 mx-auto">
                 <h2>食事編集</h2>
                 <p>摂取した食品の栄養素を記入して下さい。<br/>尚、料理などパッケージに栄養素が記載されていない場合は、<a href="https://calorie.slism.jp/" target="_blank" rel="noopener noreferrer">コチラ</a>を参照して下さい。</p>
-                <p>情報記入後、下部にある "更新" ボタンを押して下さい。</p>
+                <p>情報記入後、下部にある「更新」ボタンを押して下さい。</p>
                 <form action="{{ action('Admin\FoodController@update') }}" method="post" enctype="multipart/form-data">
+                    
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -16,11 +17,11 @@
                             @endforeach
                         </ul>
                     @endif
+                    
                     <div class="form-group row">
                         <input type="hidden" name="user_id" value="{{ $user_id }}">
                         <label class="col-md-2">日付</label>
                         <div class="col-md-10">
-                            <!--<input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">-->
                             <input type="date" class="form-control" name="eat_date" value="{{ $food_form->eat_date, \Carbon\Carbon::now()->format('Y-m-d') }}">
                         </div>
                     </div>

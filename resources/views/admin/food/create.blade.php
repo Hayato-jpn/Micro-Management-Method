@@ -16,11 +16,11 @@
                             @endforeach
                         </ul>
                     @endif
+                    
                     <div class="form-group row">
                         <input type="hidden" name="user_id" value="{{ $user_id }}">
                         <label class="col-md-2">日付</label>
                         <div class="col-md-10">
-                            <!--<input type="date" class="form-control" name="date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">-->
                             <input type="date" class="form-control" name="eat_date" value="{{ old('eat_date', \Carbon\Carbon::now()->format('Y-m-d')) }}">
                         </div>
                     </div>

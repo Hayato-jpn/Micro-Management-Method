@@ -31,7 +31,7 @@
             {{-- 画面上部に表示するナビゲーションバーです。 --}}
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ url('/admin/food/top') }}">
+                    <a class="navbar-brand" href="{{ url('/admin/top') }}">
                         <!--{{ config('app.name', 'Laravel') }}-->
                         Macro-Management-Method / マクロ管理法
                     </a>
@@ -51,7 +51,7 @@
                             <li><p>&nbsp;/&nbsp;</p></li>
                             <li><a href="{{ url('/admin/food/create') }}">FOOD RECORD</a></li>
                             <li><p>&nbsp;/&nbsp;</p></li>
-                            <li><a href="{{ url('/admin/food') }}">FOOD LIST</a></li>
+                            <li><a href="{{ url('/admin/food/index') }}">FOOD LIST</a></li>
                             <li><p>&nbsp;】&nbsp;</p></li>
                         </ul>
 

@@ -20,25 +20,40 @@ class Food extends Model
         'lipid' => 'required',
     );
     
-    // //作業中。→today.blade.php内へ変更
-    // //今日摂取タンパク質
-    // public function getTodayTotalProteinAttribute() {
-    //     return $this->protein;
-    // }
+    public static function getTodayProtein($foods) {
+        $todayProtein = 0;
+        foreach ($foods as $food) {
+            $todayProtein += $food->protein;
+        }
+        
+        return $todayProtein;
+    }
     
-    // //今日摂取炭水化物
-    // public function getTodayTotalCarbohydrateAttribute() {
-    //     return $this->carbohydrate;
-    // }
+    public static function getTodayCarbohydrate($foods) {
+        $todayCarbohydrate = 0;
+        foreach ($foods as $food) {
+            $todayCarbohydrate += $food->carbohydrate;
+        }
+        
+        return $todayCarbohydrate;
+    }
     
-    // //今日摂取脂質
-    // public function getTodayTotalLipidAttribute() {
-    //     return $this->lipid;
-    // }
+    public static function getTodayLipid($foods) {
+        $todayLipid = 0;
+        foreach ($foods as $food) {
+            $todayLipid += $food->lipid;
+        }
+        
+        return $todayLipid;
+    }
     
-    // //今日摂取カロリー
-    // public function getTodayTotalCalorieAttribute() {
-    //     $total = $this->today_total_protein * 4 + $this->today_total_carbohydrate * 4 + $this->today_total_lipid * 9;
-    //     return $total;
-    // }
+    public static function getTodayCalorie($todayProtein, $todayCarbohydrate, $todayLipid) {
+        $output = floor($todayProtein * 4 + $todayCarbohydrate * 4 + $todayLipid * 9);
+        return $output;
+    }
+    
+    public static function getGoalPercentageCalorie($todayCalorie, $totalCalorie) {
+        $output = floor($todayCalorie / $totalCalorie * 100);
+        return $output;
+    }
 }

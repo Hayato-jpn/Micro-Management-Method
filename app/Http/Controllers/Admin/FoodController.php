@@ -32,7 +32,7 @@ class FoodController extends Controller
         $food->fill($form);
         $food->save();
         
-        return redirect('admin/food');
+        return redirect('admin/food/index');
     }
     
     public function edit(Request $request) {
@@ -65,15 +65,7 @@ class FoodController extends Controller
         $food = Food::find($request->id);
         // 削除する
         $food->delete();
-        return redirect('admin/food/');
-    }
-    
-    public function refresh(Request $request) {
-        // 該当するNews Modelを取得
-        $food = Food::find($request->id);
-        // 削除する
-        $food->delete();
-        return redirect('admin/food/today');
+        return redirect('admin/food/index');
     }
     
     public function index(Request $request) {
@@ -101,18 +93,35 @@ class FoodController extends Controller
         //Foodマイグレーションファイルから本日データを$foodに入れる
         $today = \Carbon\Carbon::now()->format('Y-m-d');
         // $foods = Food::where('eat_date', $today)->select('eat_time', 'food', 'protein', 'lipid', 'carbohydrate')->all();
-        $posts = Food::where('user_id', $user_id)->where('eat_date', $today)->get();
-        $post = Food::where('user_id', $user_id)->where('eat_date', $today)->first();
+        $foods = Food::where('user_id', $user_id)->where('eat_date', $today)->get();
+        // $post = Food::where('user_id', $user_id)->where('eat_date', $today)->first();
         
         if (empty($profile)) {
             return redirect('admin/profile/create');
-        } else {
-            return view('admin.food.today',  ['profile' => $profile, 'posts' => $posts]);
         }
+        
+        $todayProtein = Food::getTodayProtein($foods);
+        $todayCarbohydrate = Food::getTodayCarbohydrate($foods);
+        $todayLipid = Food::getTodayLipid($foods);
+        $todayCalorie = Food::getTodayCalorie($todayProtein, $todayCarbohydrate, $todayLipid);
+        $GoalPercentageCalorie = Food::getGoalPercentageCalorie($todayCalorie, $profile->total_calorie);
+        return view('admin.food.today', compact('profile', 'foods', 'todayProtein', 'todayCarbohydrate', 'todayLipid', 'todayCalorie', 'goalPercentageCalorie'));
     }
     
     public function top() {
-        return view('admin.food.top');
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
+        $profile = Profile::where('id', $user_id)->select('id')->first();
+        if (empty($profile)) {
+            return redirect('admin/profile/create');
+        } else {
+            return view('admin.food.top', ['profile' => $profile]);
+        }
+    }
+    
+    public function home() {
+        return view('admin.food.home');
     }
     
     //作業中

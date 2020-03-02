@@ -40,6 +40,6 @@ class LoginController extends Controller
     
     //追加↓
     protected function loggedOut(Request $request) {
-        return redirect(url('/admin/food/top'));
+        return redirect(url('/admin/home'));
     }
 }

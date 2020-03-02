@@ -1,22 +1,8 @@
 @extends('layouts.admin')
 @section('title', '本日の進捗')
 
-<?php 
-    $todayProtein = 0;
-    $todayCarbohydrate = 0;
-    $todayLipid = 0;
-    
-    foreach ($posts as $post) {
-        $todayProtein += $post->protein;
-        $todayCarbohydrate += $post->carbohydrate;
-        $todayLipid += $post->lipid;
-    }
-    
-    $todayCalorie = floor($todayProtein * 4 + $todayCarbohydrate * 4 + $todayLipid * 9);
-    $goalPercentageCalorie = floor($todayCalorie / $profile->total_calorie * 100);
-?>
-
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
@@ -74,7 +60,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($posts as $i => $food)
+                                    @foreach($foods as $i => $food)
                                         <tr>
                                             <td>{{ \Str::limit($food->eat_date, 100) }}</td>
                                             <td>{{ \Str::limit($food->eat_time, 100) }}</td>
@@ -89,7 +75,7 @@
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ action('Admin\FoodController@refresh', ['id' => $food->id]) }}">削除</a>
+                                                    <a href="{{ action('Admin\FoodController@delete', ['id' => $food->id]) }}">削除</a>
                                                 </div>
                                             </td>
                                         </tr>

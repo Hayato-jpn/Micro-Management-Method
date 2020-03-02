@@ -31,7 +31,7 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th></th>
+                                <th width="10%">No.</th></th>
                                 <th width="10%">日付</th>
                                 <th width="10%">種類</th>
                                 <th width="12%">食品名</th>

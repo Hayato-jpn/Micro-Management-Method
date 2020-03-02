@@ -22,14 +22,15 @@
                             @endforeach
                         </ul>
                     @endif
+                    
                     <div class="form-group row">
+                        <input type="hidden" name="user_id" value="{{ $user_id }}">
                         <label class="col-md-2">性別</label>
                         <div class="col-md-10">
                             <select class="form-control" name="sex">
                                 <option value="">性別を選択して下さい</option>
                                 <option value="man">男性</option>
                                 <option value="woman">女性</option>
-                            <!--<input type="text" class="form-control" name="sex" value="{{ old('title') }}">-->
                             </select>
                         </div>
                     </div>
@@ -59,7 +60,6 @@
                                 <option value="low">【低】座り仕事が多く、一日の運動は歩いたり階段を上ったりする程度</option>
                                 <option value="normal">【普通】立ち仕事や重労働が多く、比較的一日中動き回っている</option>
                                 <option value="high">【高】立ち仕事や重労働が多く、それに加えジムでトレーニングを行っている</option>
-                            <!--<input type="text" class="form-control" name="active" value="{{ old('title') }}">-->
                             </select>
                         </div>
                     </div>
@@ -71,7 +71,6 @@
                                 <option value="diet">減量(ダイエット)</option>
                                 <option value="keep">現状維持</option>
                                 <option value="increase">増量</option>
-                            <!--<input type="text" class="form-control" name="purpose" value="{{ old('title') }}">-->
                             </select>
                         </div>
                     </div>

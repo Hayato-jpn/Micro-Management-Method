@@ -11,8 +11,16 @@ use Illuminate\Support\Facades\Auth; //追加
 class ProfileController extends Controller
 {
     //
-    public function add() {
-        return view('admin.profile.create');
+    public function add(Request $request) {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
+        $profile = Profile::find($request->id);
+        if (!(empty($profile))) {
+            return view('admin.profile.edit', ['profile_form' => $profile, 'user_id' => $user_id]);
+        } else {
+            return view('admin.profile.create', ['user_id' => $user_id]);   
+        }
     }
     
     public function create(Request $request) {
@@ -33,11 +41,15 @@ class ProfileController extends Controller
     }
     
     public function edit(Request $request) {
+        $user = Auth::user();
+        $user_id = Auth::id();
+        
         $profile = Profile::find($request->id);
         if (empty($profile)) {
-            abort(404);    
+            return view('admin.profile.create',  ['user_id' => $user_id]);   
+        } else {
+            return view('admin.profile.edit', ['profile_form' => $profile, 'user_id' => $user_id]);   
         }
-        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
     
     public function update(Request $request) {
@@ -61,7 +73,7 @@ class ProfileController extends Controller
         $user_id = Auth::id();
         
         // ↓これだと正常な挙動になる
-        $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->first();
+        $profile = Profile::where('id', $user_id)->first();
         // $profile = Profile::where('id', $user_id)->select('id', 'height', 'weight', 'age', 'sex', 'active', 'purpose')->all();
         //☝︎これだとエラー表示になる
         

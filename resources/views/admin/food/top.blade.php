@@ -16,13 +16,13 @@
                 <br />
                 <br />
                 <h2>このサイトの使い方</h2>
-                <p>①：<a href="{{ url('/admin/profile/create') }}">プロフィール新規作成</a>よりあなたのプロフィールデータを入力して下さい</p>
+                <p>①：<a href="{{ action('Admin\ProfileController@add', ['id' => $profile->id]) }}">プロフィール新規作成</a>よりあなたのプロフィールデータを入力して下さい</p>
                 <p>②：入力完了後、<a href="{{ url('/admin/profile/data') }}">プロフィール計算結果</a>にあなたの目標カロリー、各栄養素、基礎代謝などが表示されます</p>
                 <p>③：後は、日々の食事を<a href="{{ url('/admin/food/create') }}">食事新規登録</a>から登録して下さい</p>
-                <p>④：登録完了後、登録データが<a href="{{ url('/admin/food/') }}">登録済み食事一覧</a>ページに表示されます</p>
+                <p>④：登録完了後、登録データが<a href="{{ url('/admin/food/index') }}">登録済み食事一覧</a>ページに表示されます</p>
                 <p>⑤：また、<a href="{{ url('/admin/food/today') }}">本日の進捗</a>にて、本日の目標カロリー・各栄養素の達成度をご確認頂けます</p>
                 <p>⑥：過去データを閲覧したい場合は<a href="{{ url('/admin/food/history') }}">過去データ閲覧</a>より、ご確認頂けます</p>
-                <p>※入力データを修正する場合は、プロフィールデータの場合は<a href="{{ url('/admin/profile/data') }}">コチラ</a>のページ下部をご確認下さい。<br />※食事データの場合は<a href="{{ url('/admin/food') }}">コチラ</a>の各編集ボタンをご活用下さい。</p>
+                <p>※入力データを修正する場合は、プロフィールデータの場合は<a href="{{ action('Admin\ProfileController@add', ['id' => $profile->id]) }}">コチラ</a>から。<br />※食事データの場合は<a href="{{ url('/admin/food') }}">コチラ</a>の各編集ボタンをご活用下さい。</p>
                 <br />
                 <br />
                 <h2>参考文献</h2>
